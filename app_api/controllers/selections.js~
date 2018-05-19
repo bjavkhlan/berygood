@@ -1,0 +1,39 @@
+var mongoose = require('mongoose');
+var Selection = mongoose.model('Selection');
+
+var sendJSONresponse = function(res, status, content) {
+    res.status(status);
+    res.json(content);
+};
+
+/* GET list of routes */
+
+// module.exports.lessonsList = function(req, res) {
+//     Selection
+// 	.find()
+// 	.exec(function(err, lessons){
+// 	    if(!lessons) {
+// 		sendJSONresponse(res, 404, {
+// 		    "message": "no lesson found"
+// 		})
+// 	    } else {
+// 		sendJSONresponse(res, 200, lessons);
+// 	    }
+// 	});
+// };
+
+module.exports.selectionsCreate = function(req, res) {
+    console.log(req.body);
+    Selection
+	.create({
+	    student: req.body.student,
+	    lesson: req.body.lesson
+	}, function(err, selection) {
+	    if(err) {
+		sendJSONresponse(res, 400, err);
+	    } else {
+		sendJSONresponse(res, 201, selection);
+	    }
+	});
+};
+

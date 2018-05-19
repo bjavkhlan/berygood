@@ -1,0 +1,18 @@
+var express = require('express');
+var router = express.Router();
+var ctrlLessons = require('../controllers/lessons');
+var ctrlStudents = require('../controllers/students');
+var ctrlCurriculums = require('../controllers/curriculums');
+var ctrlSelection = require('../controllers/selections');
+
+router.get('/students', ctrlStudents.studentsList);
+
+router.get('/lessons', ctrlLessons.lessonsList);
+router.post('/lessons', ctrlLessons.lessonsCreate);
+
+router.get('/curriculums', ctrlCurriculums.curriculumsList);
+
+router.get('/selection/:student', ctrlSelection.selectionsList);
+router.post('/selection', ctrlSelection.selectionsCreate);
+// router.delete('/selection/:id', ctrlSelection.selectionDelete);
+module.exports = router;

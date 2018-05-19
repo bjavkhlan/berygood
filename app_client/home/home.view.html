@@ -1,0 +1,29 @@
+<navigation></navigation>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      
+      <p>Автобусны чиглэл эсвэл улсын дугаар, жолоочийн нэрээр хайна уу.</p>
+      <div class="dropdown" auto-close="outsideClick">
+	<input disable-auto-close class="form-control dropdown-toggle"  data-toggle="dropdown" type="text" ng-model="searchText" placeholder="Чиглэл | Хөдөлсөн огноо | Жолооч | Улсын дугаар "></input>
+	<div class="dropdown-menu">
+	  <a ng-repeat="departure in vm.departures | filter:searchText"
+	     ng-click="vm.search($index)"
+	     class="list-group-item list-group-item-action">
+	    Чиглэл: {{departure.origin}}-{{departure.destination}},
+	    Хөдөлсөн огноо: {{ departure.date | dateInMillis | date: 'yyyy-MM-dd hh:mm' }},
+	    Жолооч: {{departure.bus.driver}},
+	    Улсын дугаар: {{departure.bus.licenseNumber}}
+	  </a>
+	</div>
+      </div>
+
+      <br>
+      <strong>{{vm.route.origin.name}}-{{vm.route.destination.name}}</strong> чиглэлд <strong>{{vm.route.date |  dateInMillis | date: 'yyyy-MM-dd hh:mm' }}</strong> цагт хөдөлсөн <strong>{{vm.route.bus.driver}}</strong> жолоочтой <strong>{{vm.route.bus.licenseNumber}}</strong> тээврийн хэрэгслийн байршил:<br><br>
+
+      <div id="map"></div>
+      <timeline elapsed="vm.elapsed" remaining="vm.remaining" route="vm.route"></timeline>
+    </div>
+  </div>
+</div>
