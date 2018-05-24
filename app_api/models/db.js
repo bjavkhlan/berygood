@@ -1,3 +1,9 @@
+/*
+mongodb://heroku_9p3w91dx:b9v5uck9lcjp37jri3bk4vfi8n@ds133920.mlab.com:33920/heroku_9p3w91dx
+mongodump -h localhost:27017 -d berygood -o ~/tmp/mongodump
+
+mongorestore -h ds133920.mlab.com:33920 -d heroku_9p3w91dx -u heroku_9p3w91dx -p b9v5uck9lcjp37jri3bk4vfi8n ~/tmp/mongodump/berygood
+*/
 var mongoose = require('mongoose');
 var gracefulShutdown;
 var dbURI = 'mongodb://localhost/berygood';
