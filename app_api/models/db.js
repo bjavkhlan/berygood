@@ -55,3 +55,4 @@ require('./lessons');
 require('./curriculums');
 require('./selections');
 require('./users');
+require('./teachers');

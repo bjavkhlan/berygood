@@ -1,11 +1,11 @@
-n(function(){
+(function(){
     "use strict";
     angular
 	.module('berygoodApp')
 	.service('authentication', authentication);
 
-    authentication.$inject = ['$window'];
-    function authentication($window) {
+    authentication.$inject = ['$window', '$http'];
+    function authentication($window, $http) {
 	var service = this;
 	service.getToken = function() {
 	    return $window.localStorage['berygood-token'];
@@ -15,19 +15,19 @@ n(function(){
 	};
 	service.register = function(user) {
 	    return $http.post('/api/register', user).success(function(data){
-		saveToken(data.token);
+		service.saveToken(data.token);
 	    });
 	};
 	service.login = function(user) {
 	    return $http.post('/api/login', user).success(function(data) {
-		saveToken(data.token);
+		service.saveToken(data.token);
 	    });
 	};
 	service.logout = function() {
-	    $window.localStorage.removeItem('loc8r-token');
+	    $window.localStorage.removeItem('berygood-token');
 	};
 	service.isLoggedIn = function() {
-	    var token = getToken();
+	    var token = service.getToken();
 	    if(token){
 		var payload = JSON.parse($window.atob(token.split('.')[1]));
 		return payload.exp > Date.now() / 1000;
@@ -36,8 +36,8 @@ n(function(){
 	    }
 	};
 	service.currentUser = function() {
-	    if(isLoggedIn()){
-		var token = getToken();
+	    if(service.isLoggedIn()){
+		var token = service.getToken();
 		var payload = JSON.parse($window.atob(token.split('.')[1]));
 		return {
 		    id: payload.id

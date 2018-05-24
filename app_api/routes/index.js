@@ -13,19 +13,24 @@ var ctrlCurriculums = require('../controllers/curriculums');
 var ctrlSelection = require('../controllers/selections');
 
 var ctrlAuth = require('../controllers/authentication');
+var ctrlTeachers = require('../controllers/teachers');
 
 router.get('/students', ctrlStudents.studentsList);
+router.get('/students/:id', ctrlStudents.studentById);
 
-router.get('/lessons', ctrlLessons.lespsonsList);
+router.get('/lessons', ctrlLessons.lessonsList);
 router.post('/lessons', ctrlLessons.lessonsCreate);
 
 router.get('/curriculums', ctrlCurriculums.curriculumsList);
+router.get('/curriculums/:index', ctrlCurriculums.curriculumByIndex);
 
 router.get('/selection/:student', ctrlSelection.selectionsList);
 router.post('/selection', ctrlSelection.selectionsCreate);
-// router.delete('/selection/:id', ctrlSelection.selectionDelete);
+router.delete('/selection/:student/:lesson', ctrlSelection.selectionDelete);
 
 router.post('/register', ctrlAuth.register);
 router.post('/login', ctrlAuth.login);
+
+router.get('/teachers/:lesson', ctrlTeachers.teachersByLesson);
 
 module.exports = router;

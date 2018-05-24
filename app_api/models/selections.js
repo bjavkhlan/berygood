@@ -2,7 +2,8 @@ var mongoose = require('mongoose');
 
 var selectionSchema = new mongoose.Schema({
     student: String,
-    lesson: String
+    lesson: String,
+    teacher: String
 });
 
 

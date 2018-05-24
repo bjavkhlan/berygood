@@ -5,9 +5,61 @@
     <div class="col-xs-12">
       <form>
 	<div class="form-group">
-	  <ul>
-	    <li ng-repeat="lesson in vm.lessons">{{lesson.name}}</li>
-	  </ul>
+	  <table class="table table-striped">
+	    <thead>
+	      <tr>
+		<th>Хичээлийн индекс</th>
+		<th>Хичээлийн нэр</th>
+		<th>Сонгосон багш</th>
+		<th></th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr ng-repeat="lesson in vm.lessons">
+		<td>{{lesson.index}}</td>
+		<td>{{lesson.name}}</td>
+		<td>{{vm.isSelected(lesson.index).teacher}}</td>
+		<td><button ng-hide="vm.isSelected(lesson.index)" ng-click="vm.selectLesson(lesson.index)"
+			    type="button" class="btn" data-toggle="modal" data-target="#exampleModal">Сонгох</button><button ng-show="vm.isSelected(lesson.index)" ng-click="vm.deleteSelection(lesson.index)" type="button" class="btn btn-danger">Цуцлах</button></td>
+		<!-- <td><button ng-hide="vm.selected[lesson.index] !== undefined" ng-click="vm.selectLesson(lesson.index)" -->
+		<!-- 	    type="button" class="btn" data-toggle="modal" data-target="#exampleModal">Сонгох</button><button ng-show="vm.selected[lesson.index] !== undefined" ng-click="vm.deleteSelection(lesson.index)" type="button" class="btn btn-danger">Цуцлах</button></td> -->
+	      </tr>
+	    </tbody>
+	  </table>
+	  <!-- <ul> -->
+	  <!--   <li ng-repeat="lesson in vm.lessons"> {{lesson.name}} {{lesson.index}} -->
+	  <!--     <button ng-hide="vm.isSelected(lesson.index)" ng-click="vm.selectLesson(lesson.index)" type="button" class="btn">Сонгох</button><button ng-show="vm.isSelected(lesson.index)" ng-click="vm.deleteSelection(lesson.index)" type="button" class="btn btn-danger">Цуцлах</button> -->
+	  <!--   </li> -->
+	  <!-- </ul> -->
+
+	  <!-- Modal -->
+	  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	    <div class="modal-dialog" role="document">
+	      <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="exampleModalLabel">Багш сонгох</h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		    <span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+
+		  <div class="form-group">
+		    <label for="selectTeacher"></label>
+		    <select  ng-model="vm.teacherName" class="form-control" id="selectTeacher">
+		      <option ng-repeat="teacher in vm.teachers">{{teacher.teacher}}</option>
+		    </select>
+		  </div>
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-secondary" data-dismiss="modal">Цуцлах</button>
+		  <button type="button" class="btn btn-primary" ng-click="vm.selectTeacher(vm.teacherName)">Сонгох</button>
+		</div>
+	      </div>
+	    </div>
+	  </div>
+
+	  
 	</div>
       </form>
     </div>

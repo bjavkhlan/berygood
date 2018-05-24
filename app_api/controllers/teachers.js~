@@ -1,0 +1,30 @@
+var mongoose = require('mongoose');
+var Teacher = mongoose.model('Teacher');
+
+var sendJSONresponse = function(res, status, content) {
+    res.status(status);
+    res.json(content);
+};
+
+module.exports.selectionsList = function(req, res) {
+    if(!req.params.student) {
+	sendJSONresponse(res, 404, {
+	    "message": "Not found, student is required"
+	});
+	return;
+    }
+    Teacher
+	.find({
+	    student: req.params.student
+	})
+	.exec(function(err, selections){
+	    if(!selections) {
+		sendJSONresponse(res, 404, {
+		    "message": "no lesson found"
+		})
+	    } else {
+		sendJSONresponse(res, 200, selections);
+	    }
+	});
+};
+

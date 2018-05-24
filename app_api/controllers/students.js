@@ -22,3 +22,25 @@ module.exports.studentsList = function(req, res) {
 	});
 };
 
+module.exports.studentById = function(req, res) {
+    if(!req.params.id) {
+	sendJSONresponse(res, 404, {
+	    "message": "Not found, all fields are required"
+	});
+	return;
+    }
+    console.log(req.params.id);
+    Students
+	.findOne({
+	    id: req.params.id
+	})
+	.exec(function(err, student){
+	    if(!student) {
+		sendJSONresponse(res, 404, {
+		    "message": "no student found"
+		})
+	    } else {
+		sendJSONresponse(res, 200, student);
+	    }
+	});
+};

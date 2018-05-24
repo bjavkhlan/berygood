@@ -33,7 +33,8 @@ module.exports.selectionsCreate = function(req, res) {
     Selection
 	.create({
 	    student: req.body.student,
-	    lesson: req.body.lesson
+	    lesson: req.body.lesson,
+	    teacher: req.body.teacher
 	}, function(err, selection) {
 	    if(err) {
 		sendJSONresponse(res, 400, err);
@@ -43,3 +44,24 @@ module.exports.selectionsCreate = function(req, res) {
 	});
 };
 
+
+module.exports.selectionDelete = function(req, res) {
+    if(!req.params.lesson || !req.params.student) {
+	sendJSONresponse(res, 404, {
+	    "message": "Not found, all fields are required"
+	});
+	return;
+    }
+    console.log(req.params);
+    Selection
+	.deleteOne({
+	    student: req.params.student,
+	    lesson: req.params.lesson
+	}, function(err) {
+	    if(err) {
+		sendJSONresponse(res, 400, err);
+	    } else {
+		sendJSONresponse(res, 200, );
+	    }
+	});
+};
