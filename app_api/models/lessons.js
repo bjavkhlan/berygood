@@ -12,7 +12,6 @@ var lessonSchema = new mongoose.Schema({
 mongoose.model('Lesson', lessonSchema);
 
 /*
-
 db.lessons.insert({
     name: 'Програм хангамжийн төсөл',
     index: 'SE0123',
@@ -28,7 +27,4 @@ db.lessons.insert({
     description: 'бла бла бла',
     season: 'both'
 })
-
-
-
 */

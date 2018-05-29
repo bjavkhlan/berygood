@@ -78,7 +78,11 @@
 	    // 	});
 	};
 
-	vm.selectLesson = function(lesson) {
+	// vm.isDone = function(lessonf) {
+	//     return vm.student.lessons.includes(lessonf);
+	// };
+	
+	vm.selectLesson = function(lesson) { 
 	    
 	    dataProvider.getTeachers(lesson)
 		.then(function(response) {

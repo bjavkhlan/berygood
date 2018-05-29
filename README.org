@@ -1,14 +1,14 @@
-* Bus Loaction
-  Хот хоорондын зорчигт тээврийн хэрэгслийн байршлын илтгэх систем.
+* Berygood
+  Хичээл тандалтын програм
 * Demo
-  [[https://busloc.herokuapp.com][Эндээс]] үзүүлэн хуудас үзэх боломжтой.
+  [[https://berygood.herokuapp.com][Эндээс]] үзүүлэн хуудас үзэх боломжтой.
 * Getting Started
 ** Prerequisities
    - NodeJS
 ** Installing 
    1. Clone the repository
       #+BEGIN_SRC
-$ git clone https://github.com/bjavkhlan/busLoc.git
+$ git clone https://github.com/bjavkhlan/berygood.git
       #+END_SRC
    2. Install the main components with global flag
       #+BEGIN_SRC
@@ -18,19 +18,6 @@ $ npm install -g nodemon
       #+BEGIN_SRC
 $ npm install
       #+END_SRC
-** Configuration
-   - Set API Url
-      #+BEGIN_SRC 
-public/angular/env.js:
-    window.__env.busApiUrl = '';
-    window.__env.routeApiUrl = '';
-      #+END_SRC
-
-   - Change Google Map API Key 
-      #+BEGIN_SRC 
-api_client/index.html(line 7)
-      #+END_SRC
-
 ** Run server
       #+BEGIN_SRC
 $ nodemon --ignore public/angular/
