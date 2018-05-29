@@ -61,7 +61,7 @@ module.exports.selectionDelete = function(req, res) {
 	    if(err) {
 		sendJSONresponse(res, 400, err);
 	    } else {
-		sendJSONresponse(res, 200, );
+		sendJSONresponse(res, 200, {});
 	    }
 	});
 };
