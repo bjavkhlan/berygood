@@ -6,7 +6,7 @@ mongorestore -h ds133920.mlab.com:33920 -d heroku_9p3w91dx -u heroku_9p3w91dx -p
 */
 var mongoose = require('mongoose');
 var gracefulShutdown;
-var dbURI = 'mongodb://localhost/berygood';
+var dbURI = 'mongodb://heroku_9p3w91dx:b9v5uck9lcjp37jri3bk4vfi8n@ds133920.mlab.com:33920/heroku_9p3w91dx';
 if (process.env.NODE_ENV === 'production') {
     dbURI = process.env.MONGODB_URI;
 }
